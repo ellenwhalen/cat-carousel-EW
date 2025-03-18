@@ -1,6 +1,6 @@
 <?php
     include 'src/functions.php';
-    initialize_page();
+    initializePage();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,14 +32,18 @@
         <!-- Page content-->
         <div class="container mt-5">
 
-        <form method="get" action="carousel.php"> <!-- action - when the user clicks, where to go?-->
+        <?php
+            initializeSelectForm();
+        ?>
+        
+        <!-- <form method="get" action="carousel.php"> 
             <select name="catID">
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
             </select>
             <input type="submit" value="click here">
-        </form>
+        </form> -->
 
 
 
