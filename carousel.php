@@ -36,30 +36,33 @@
                 $imgUrlArray = $_SESSION["imgUrlArray"];
             ?>
             <!-- <img src='https://cdn2.thecatapi.com/images/xnzzM6MBI.jpg' class="d-block w-100" alt="Cat 1"> -->
-            <div class='carousel-wrapper'>
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <?php setUpIndicators(); ?>
-                    </div>
-                
-                    <div class="carousel-inner">
-                        <?php fillCarousel(); ?>
-                    </div>
-                    
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+            <div class='row'>
+                <div class='col-sm'>
+                    <div class='carousel-wrapper'>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <?php setUpIndicators(); ?>
+                            </div>
+                        
+                            <div class="carousel-inner">
+                                <?php fillCarousel(); ?>
+                            </div>
+                            
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-
-
-
-
+                <div class='col-sm'>
+                    <?php displayCatInfo(); ?>
+                </div>
+            </div>
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

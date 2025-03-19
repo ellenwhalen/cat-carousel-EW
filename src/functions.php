@@ -11,6 +11,48 @@
         $breedInfoRaw = file_get_contents($url);
         $breedInfo = json_decode($breedInfoRaw);
         $_SESSION["breedInfo"] = $breedInfo;
+        // Admittedly the starArray is a kind of silly way of doing it, but it's fast and works well :)
+        // I know I could do it in a smarter way with loops but why bother when it's only 6 options
+        $_SESSION["starArray"] = ['<span class="rating"> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i>', 
+        '<span class="rating"> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i>', 
+        '<span class="rating"> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        </span>',
+        '<span class="rating"> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        </span>',
+        '<span class="rating"> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-regular fa-star"></i> 
+        </span>', 
+        '<span class="rating"> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        <i class="fa-solid fa-star"></i> 
+        </span>'];
     }
 
     function initializeSelectForm() {
@@ -59,7 +101,6 @@
     }
 
 
-
     function fillCarousel() {
         $imgUrlArray = $_SESSION["imgUrlArray"];
         $imageHtml = '';
@@ -72,5 +113,20 @@
         }
         echo($imageHtml);
     }
+
+    function displayCatInfo() {
+        $url = 'https://api.thecatapi.com/v1/breeds/' . $_GET["catId"];
+        $catInfoRaw = file_get_contents($url);
+        $catInfo = json_decode($catInfoRaw);
+        echo('<h4>' . $catInfo->name .'</h4>');
+        echo('<p><strong>Temperament: </strong>' . $catInfo->temperament . '</p>');
+        echo('<p><strong>Origin: </strong>' . $catInfo->origin . '</p>');
+        echo('<p><strong>Description: </strong>' . $catInfo->description . '</p>');
+        echo('<p><strong>Affection level: </strong>' . $_SESSION["starArray"][$catInfo->affection_level] . '</p>');
+        echo('<p><strong>Energy level: </strong>' . $_SESSION["starArray"][$catInfo->energy_level] . '</p>');
+        echo('<p><strong>Intelligence: </strong>' . $_SESSION["starArray"][$catInfo->intelligence] . '</p>');
+        echo('<p><strong>Social needs: </strong>' . $_SESSION["starArray"][$catInfo->social_needs] . '</p>');
+    }
+
 ?>
 
