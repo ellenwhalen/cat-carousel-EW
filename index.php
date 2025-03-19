@@ -31,7 +31,8 @@
         </nav>
         <!-- Page content-->
         <div class="container mt-5">
-
+            <h1>Cat Carousel</h1>
+            <p>Select a cat breed: </p>
         <?php
             initializeSelectForm();
         ?>
@@ -44,9 +45,6 @@
             </select>
             <input type="submit" value="click here">
         </form> -->
-
-
-
 
         </div>
         <!-- Bootstrap core JS-->

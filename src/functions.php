@@ -21,20 +21,21 @@
     }
 
     function initializeSelectForm() {
-        $formHtml = '<form method="get" action="carousel.php"> <!-- action - when the user clicks, where to go?-->
-            <select name="catID">';
+        $formHtml = '<div class="row">
+            <div class="col-sm-7"><form method="get" action="carousel.php">
+            <select name="catID" class="form-select">';
         $breedInfo = $_SESSION["breedInfo"];
         for ($i=0; $i < count($breedInfo); $i++) {
             $thisName = $breedInfo[$i]->name;
-            $formHtml .= '<option value="';
-            $formHtml .= $thisName;
-            $formHtml .= '">';
-            $formHtml .= $thisName;
-            $formHtml .= '</option>';
+            $formHtml .= '<option value="' . $thisName . '">' . $thisName . '</option>';
         }
         $formHtml .= '</select>
-            <input type="submit" value="click here">
-        </form>';
+            </div>
+            <div class="col-sm-5">
+            <input type="submit" value="See cats!" class="btn btn-primary">
+            </div>
+            </div>
+            </form>';
         echo($formHtml);
     }
 
