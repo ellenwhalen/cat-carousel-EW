@@ -38,12 +38,27 @@
         $imagesRaw = file_get_contents($url);
         $images = json_decode($imagesRaw);
         $imgUrlArray = [];
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < count($images); $i++) {
             $imgUrl = $images[$i]->url;
             $imgUrlArray[$i] = $imgUrl;
         }
         $_SESSION["imgUrlArray"] = $imgUrlArray;
     }
+
+    function setUpIndicators() {
+        $imgCount = count($_SESSION["imgUrlArray"]);
+        $indicatorHtml = '';
+        for ($i=0; $i < $imgCount; $i++) {
+            $indicatorHtml .= '<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="' . $i . '" class="active" ' ;
+            if ($i == 0) {
+                $indicatorHtml .= 'aria-current="true" ';
+            }
+            $indicatorHtml .='aria-label="Slide ' . ($i + 1) . '"></button>';
+        }
+        echo($indicatorHtml);
+    }
+
+
 
     function fillCarousel() {
         $imgUrlArray = $_SESSION["imgUrlArray"];
