@@ -31,10 +31,7 @@
         </nav>
         <!-- Page content-->
         <div class="container mt-5">
-            <?php
-                getImages();
-                $imgUrlArray = $_SESSION["imgUrlArray"];
-            ?>
+            <?php getImages(); ?>
             <!-- <img src='https://cdn2.thecatapi.com/images/xnzzM6MBI.jpg' class="d-block w-100" alt="Cat 1"> -->
             <div class='row'>
                 <div class='col-sm'>

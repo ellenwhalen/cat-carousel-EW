@@ -7,6 +7,7 @@
 /* write PHP functions here */
 
     function initializePage() {
+        // Initializes the page, adding necessary info to the $_SESSION array.
         $url = "http://api.thecatapi.com/v1/breeds";
         $breedInfoRaw = file_get_contents($url);
         $breedInfo = json_decode($breedInfoRaw);
@@ -56,10 +57,11 @@
     }
 
     function initializeSelectForm() {
+        // Initializes the select form, populating it with all of the breed names.
         $formHtml = '<div class="row">
             <div class="col-sm-7"><form method="get" action="carousel.php">
             <select name="catId" class="form-select">';
-        $breedInfo = $_SESSION["breedInfo"];
+        $breedInfo = $_SESSION["breedInfo"];        // breedInfo should be an array
         for ($i=0; $i < count($breedInfo); $i++) {
             $thisName = $breedInfo[$i]->name;
             $thisId = $breedInfo[$i]->id;
@@ -76,6 +78,7 @@
     }
 
     function getImages() {
+        // Creates an array of the image urls we will use to fetch the cat images for each breed page.
         $url = "https://api.thecatapi.com/v1/images/search?breed_ids=" . $_GET["catId"] . "&limit=10";
         $imagesRaw = file_get_contents($url);
         $images = json_decode($imagesRaw);
@@ -88,7 +91,8 @@
     }
 
     function setUpIndicators() {
-        $imgCount = count($_SESSION["imgUrlArray"]);
+        // Dynamically writes HTML with the correct number of carousel indicators based on the number of images retrieved.
+        $imgCount = count($_SESSION["imgUrlArray"]); 
         $indicatorHtml = '';
         for ($i=0; $i < $imgCount; $i++) {
             $indicatorHtml .= '<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="' . $i . '" class="active" ' ;
@@ -102,6 +106,7 @@
 
 
     function fillCarousel() {
+        // Dynamically writes HTML with a carousel filled with the retrieved images.
         $imgUrlArray = $_SESSION["imgUrlArray"];
         $imageHtml = '';
         for ($i=0; $i < count($imgUrlArray); $i++) {
@@ -115,6 +120,7 @@
     }
 
     function displayCatInfo() {
+        // Displays the correct information for the selected breed of cat..
         $url = 'https://api.thecatapi.com/v1/breeds/' . $_GET["catId"];
         $catInfoRaw = file_get_contents($url);
         $catInfo = json_decode($catInfoRaw);
